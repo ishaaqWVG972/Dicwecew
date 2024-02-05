@@ -1,0 +1,844 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		087C139A53DB2513184A2635 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E3558157BECF7BD47E066B5 /* awsconfiguration.json */; };
+		51FF46E9E1AA9EB29485EF83 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B6397A07C128A02901DA9EA /* amplifyconfiguration.json */; };
+		7611545E2B4F158C00288A89 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611545D2B4F158C00288A89 /* AccountView.swift */; };
+		76204AE82B51870C003A7426 /* ShoppingListUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76204AE72B51870C003A7426 /* ShoppingListUi.swift */; };
+		762372BA2B41F6B100FBF4C0 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762372B92B41F6B100FBF4C0 /* TransactionViewModel.swift */; };
+		763DFCDF2B4C4126001FA403 /* StatsUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763DFCDE2B4C4126001FA403 /* StatsUi.swift */; };
+		766340B52B67FE9E006AA50B /* BudgetUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766340B42B67FE9E006AA50B /* BudgetUi.swift */; };
+		766340B92B6804B2006AA50B /* BudgetCreationUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766340B82B6804B2006AA50B /* BudgetCreationUi.swift */; };
+		767AF4FE2B3DCAE6001C2949 /* ScanDocumetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767AF4FD2B3DCAE6001C2949 /* ScanDocumetView.swift */; };
+		767AF5002B3DCBB8001C2949 /* ManualTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767AF4FF2B3DCBB8001C2949 /* ManualTransactionView.swift */; };
+		767AF5072B3DDC39001C2949 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 767AF5062B3DDC39001C2949 /* KeychainSwift */; };
+		767F74AF2B470F4E002F34D7 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 767F74AE2B470F4E002F34D7 /* SQLite */; };
+		767F74B42B471A97002F34D7 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767F74B32B471A97002F34D7 /* DatabaseManager.swift */; };
+		767F74B62B474F68002F34D7 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767F74B52B474F68002F34D7 /* KeychainManager.swift */; };
+		76C6102E2B49B81E00677A72 /* CategoryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C6102D2B49B81E00677A72 /* CategoryEditView.swift */; };
+		76C610302B49B99400677A72 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C6102F2B49B99400677A72 /* CategorySelectionView.swift */; };
+		76C85F322B449EBF006D3D66 /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C85F312B449EBF006D3D66 /* AllTransactionsView.swift */; };
+		76C8ACEB2B7040D7005EB11E /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C8ACEA2B7040D7005EB11E /* BrowseView.swift */; };
+		76CD3FDE2B4884780091356C /* CategoryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CD3FDD2B4884780091356C /* CategoryCreationView.swift */; };
+		76CD3FE02B48933F0091356C /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CD3FDF2B48933F0091356C /* CategoryListView.swift */; };
+		76D6AB4C2B3CAEC20009FC7E /* DissoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB4B2B3CAEC20009FC7E /* DissoAppApp.swift */; };
+		76D6AB4E2B3CAEC20009FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB4D2B3CAEC20009FC7E /* ContentView.swift */; };
+		76D6AB502B3CAEC40009FC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D6AB4F2B3CAEC40009FC7E /* Assets.xcassets */; };
+		76D6AB532B3CAEC40009FC7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D6AB522B3CAEC40009FC7E /* Preview Assets.xcassets */; };
+		76D6AB5D2B3CAEC40009FC7E /* DissoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB5C2B3CAEC40009FC7E /* DissoAppTests.swift */; };
+		76D6AB672B3CAEC40009FC7E /* DissoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB662B3CAEC40009FC7E /* DissoAppUITests.swift */; };
+		76D6AB692B3CAEC40009FC7E /* DissoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB682B3CAEC40009FC7E /* DissoAppUITestsLaunchTests.swift */; };
+		76D6AB762B3CB0EE0009FC7E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB752B3CB0EE0009FC7E /* NetworkService.swift */; };
+		76D6AB782B3CB0FF0009FC7E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB772B3CB0FF0009FC7E /* Model.swift */; };
+		76D6AB7B2B3CB30C0009FC7E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB7A2B3CB30C0009FC7E /* LoginView.swift */; };
+		76D6AB7D2B3CB3210009FC7E /* RegisterUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB7C2B3CB3210009FC7E /* RegisterUi.swift */; };
+		76D6AB7F2B3CB3370009FC7E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6AB7E2B3CB3370009FC7E /* MainView.swift */; };
+		76FB900C2B4DB72800CB537A /* CategoryWiseSpendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB900B2B4DB72800CB537A /* CategoryWiseSpendingView.swift */; };
+		76FB900E2B4DB73400CB537A /* TopExpenseCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB900D2B4DB73400CB537A /* TopExpenseCategoriesView.swift */; };
+		76FB90102B4DB73F00CB537A /* SpendingOverTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB900F2B4DB73F00CB537A /* SpendingOverTimeView.swift */; };
+		76FB90122B4DB9E800CB537A /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB90112B4DB9E800CB537A /* SummaryView.swift */; };
+		76FB90142B4DC33600CB537A /* RecentSpendingTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB90132B4DC33600CB537A /* RecentSpendingTimeView.swift */; };
+		76FB90162B4DC96F00CB537A /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB90152B4DC96F00CB537A /* MonthYearPickerView.swift */; };
+		76FD0C4A2B3F658000F78E15 /* TransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD0C492B3F658000F78E15 /* TransactionCard.swift */; };
+		76FD0C4C2B3F670D00F78E15 /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD0C4B2B3F670D00F78E15 /* TransactionDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76D6AB592B3CAEC40009FC7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D6AB402B3CAEC20009FC7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76D6AB472B3CAEC20009FC7E;
+			remoteInfo = DissoApp;
+		};
+		76D6AB632B3CAEC40009FC7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76D6AB402B3CAEC20009FC7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76D6AB472B3CAEC20009FC7E;
+			remoteInfo = DissoApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1B6397A07C128A02901DA9EA /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		7611545D2B4F158C00288A89 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		76204AE72B51870C003A7426 /* ShoppingListUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListUi.swift; sourceTree = "<group>"; };
+		762372B92B41F6B100FBF4C0 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		763A67292B486F0E0030584A /* DissoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DissoApp.entitlements; sourceTree = "<group>"; };
+		763DFCDE2B4C4126001FA403 /* StatsUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsUi.swift; sourceTree = "<group>"; };
+		766340B42B67FE9E006AA50B /* BudgetUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUi.swift; sourceTree = "<group>"; };
+		766340B82B6804B2006AA50B /* BudgetCreationUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCreationUi.swift; sourceTree = "<group>"; };
+		767AF4FD2B3DCAE6001C2949 /* ScanDocumetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumetView.swift; sourceTree = "<group>"; };
+		767AF4FF2B3DCBB8001C2949 /* ManualTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualTransactionView.swift; sourceTree = "<group>"; };
+		767F74B32B471A97002F34D7 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		767F74B52B474F68002F34D7 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		76C6102D2B49B81E00677A72 /* CategoryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditView.swift; sourceTree = "<group>"; };
+		76C6102F2B49B99400677A72 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		76C85F312B449EBF006D3D66 /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
+		76C8ACEA2B7040D7005EB11E /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		76CD3FDD2B4884780091356C /* CategoryCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCreationView.swift; sourceTree = "<group>"; };
+		76CD3FDF2B48933F0091356C /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		76D6AB482B3CAEC20009FC7E /* DissoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DissoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76D6AB4B2B3CAEC20009FC7E /* DissoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissoAppApp.swift; sourceTree = "<group>"; };
+		76D6AB4D2B3CAEC20009FC7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		76D6AB4F2B3CAEC40009FC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76D6AB522B3CAEC40009FC7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		76D6AB582B3CAEC40009FC7E /* DissoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DissoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		76D6AB5C2B3CAEC40009FC7E /* DissoAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissoAppTests.swift; sourceTree = "<group>"; };
+		76D6AB622B3CAEC40009FC7E /* DissoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DissoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		76D6AB662B3CAEC40009FC7E /* DissoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissoAppUITests.swift; sourceTree = "<group>"; };
+		76D6AB682B3CAEC40009FC7E /* DissoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DissoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		76D6AB752B3CB0EE0009FC7E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		76D6AB772B3CB0FF0009FC7E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		76D6AB792B3CB1730009FC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		76D6AB7A2B3CB30C0009FC7E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		76D6AB7C2B3CB3210009FC7E /* RegisterUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUi.swift; sourceTree = "<group>"; };
+		76D6AB7E2B3CB3370009FC7E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		76FB900B2B4DB72800CB537A /* CategoryWiseSpendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWiseSpendingView.swift; sourceTree = "<group>"; };
+		76FB900D2B4DB73400CB537A /* TopExpenseCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopExpenseCategoriesView.swift; sourceTree = "<group>"; };
+		76FB900F2B4DB73F00CB537A /* SpendingOverTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingOverTimeView.swift; sourceTree = "<group>"; };
+		76FB90112B4DB9E800CB537A /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		76FB90132B4DC33600CB537A /* RecentSpendingTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSpendingTimeView.swift; sourceTree = "<group>"; };
+		76FB90152B4DC96F00CB537A /* MonthYearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
+		76FD0C492B3F658000F78E15 /* TransactionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCard.swift; sourceTree = "<group>"; };
+		76FD0C4B2B3F670D00F78E15 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
+		8E3558157BECF7BD47E066B5 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		76D6AB452B3CAEC20009FC7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				767F74AF2B470F4E002F34D7 /* SQLite in Frameworks */,
+				767AF5072B3DDC39001C2949 /* KeychainSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76D6AB552B3CAEC40009FC7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76D6AB5F2B3CAEC40009FC7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		760DC63A2B6BE43E00D215FA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				767F74B32B471A97002F34D7 /* DatabaseManager.swift */,
+				762372B92B41F6B100FBF4C0 /* TransactionViewModel.swift */,
+				76D6AB772B3CB0FF0009FC7E /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		761154592B4EC2AE00288A89 /* RRegister and Login */ = {
+			isa = PBXGroup;
+			children = (
+				767F74B52B474F68002F34D7 /* KeychainManager.swift */,
+				76D6AB7C2B3CB3210009FC7E /* RegisterUi.swift */,
+				76D6AB7A2B3CB30C0009FC7E /* LoginView.swift */,
+			);
+			path = "RRegister and Login";
+			sourceTree = "<group>";
+		};
+		7611545A2B4EC2D000288A89 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				76C85F312B449EBF006D3D66 /* AllTransactionsView.swift */,
+				76FD0C4B2B3F670D00F78E15 /* TransactionDetailView.swift */,
+				76FD0C492B3F658000F78E15 /* TransactionCard.swift */,
+				767AF4FF2B3DCBB8001C2949 /* ManualTransactionView.swift */,
+				767AF4FD2B3DCAE6001C2949 /* ScanDocumetView.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		7611545C2B4EC31C00288A89 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				76C6102F2B49B99400677A72 /* CategorySelectionView.swift */,
+				76C6102D2B49B81E00677A72 /* CategoryEditView.swift */,
+				76CD3FDF2B48933F0091356C /* CategoryListView.swift */,
+				76CD3FDD2B4884780091356C /* CategoryCreationView.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		766340B72B68047B006AA50B /* Budgets */ = {
+			isa = PBXGroup;
+			children = (
+				766340B42B67FE9E006AA50B /* BudgetUi.swift */,
+				766340B82B6804B2006AA50B /* BudgetCreationUi.swift */,
+			);
+			path = Budgets;
+			sourceTree = "<group>";
+		};
+		76C8ACE72B7036BD005EB11E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				76D6AB4D2B3CAEC20009FC7E /* ContentView.swift */,
+				7611545D2B4F158C00288A89 /* AccountView.swift */,
+				76D6AB7E2B3CB3370009FC7E /* MainView.swift */,
+				76C8ACEA2B7040D7005EB11E /* BrowseView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		76D6AB3F2B3CAEC20009FC7E = {
+			isa = PBXGroup;
+			children = (
+				76D6AB4A2B3CAEC20009FC7E /* DissoApp */,
+				76D6AB5B2B3CAEC40009FC7E /* DissoAppTests */,
+				76D6AB652B3CAEC40009FC7E /* DissoAppUITests */,
+				76D6AB492B3CAEC20009FC7E /* Products */,
+				EA31E73903E532C62A7FFD57 /* AmplifyConfig */,
+			);
+			sourceTree = "<group>";
+		};
+		76D6AB492B3CAEC20009FC7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76D6AB482B3CAEC20009FC7E /* DissoApp.app */,
+				76D6AB582B3CAEC40009FC7E /* DissoAppTests.xctest */,
+				76D6AB622B3CAEC40009FC7E /* DissoAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		76D6AB4A2B3CAEC20009FC7E /* DissoApp */ = {
+			isa = PBXGroup;
+			children = (
+				76C8ACE72B7036BD005EB11E /* Home */,
+				760DC63A2B6BE43E00D215FA /* Models */,
+				766340B72B68047B006AA50B /* Budgets */,
+				7611545C2B4EC31C00288A89 /* Categories */,
+				7611545A2B4EC2D000288A89 /* Transactions */,
+				761154592B4EC2AE00288A89 /* RRegister and Login */,
+				76FB900A2B4DB71200CB537A /* Chart Views */,
+				763A67292B486F0E0030584A /* DissoApp.entitlements */,
+				76D6AB792B3CB1730009FC7E /* Info.plist */,
+				76D6AB4B2B3CAEC20009FC7E /* DissoAppApp.swift */,
+				76D6AB4F2B3CAEC40009FC7E /* Assets.xcassets */,
+				76D6AB512B3CAEC40009FC7E /* Preview Content */,
+				76D6AB752B3CB0EE0009FC7E /* NetworkService.swift */,
+				76204AE72B51870C003A7426 /* ShoppingListUi.swift */,
+			);
+			path = DissoApp;
+			sourceTree = "<group>";
+		};
+		76D6AB512B3CAEC40009FC7E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				76D6AB522B3CAEC40009FC7E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		76D6AB5B2B3CAEC40009FC7E /* DissoAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				76D6AB5C2B3CAEC40009FC7E /* DissoAppTests.swift */,
+			);
+			path = DissoAppTests;
+			sourceTree = "<group>";
+		};
+		76D6AB652B3CAEC40009FC7E /* DissoAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				76D6AB662B3CAEC40009FC7E /* DissoAppUITests.swift */,
+				76D6AB682B3CAEC40009FC7E /* DissoAppUITestsLaunchTests.swift */,
+			);
+			path = DissoAppUITests;
+			sourceTree = "<group>";
+		};
+		76FB900A2B4DB71200CB537A /* Chart Views */ = {
+			isa = PBXGroup;
+			children = (
+				763DFCDE2B4C4126001FA403 /* StatsUi.swift */,
+				76FB900B2B4DB72800CB537A /* CategoryWiseSpendingView.swift */,
+				76FB900D2B4DB73400CB537A /* TopExpenseCategoriesView.swift */,
+				76FB900F2B4DB73F00CB537A /* SpendingOverTimeView.swift */,
+				76FB90112B4DB9E800CB537A /* SummaryView.swift */,
+				76FB90132B4DC33600CB537A /* RecentSpendingTimeView.swift */,
+				76FB90152B4DC96F00CB537A /* MonthYearPickerView.swift */,
+			);
+			path = "Chart Views";
+			sourceTree = "<group>";
+		};
+		EA31E73903E532C62A7FFD57 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8E3558157BECF7BD47E066B5 /* awsconfiguration.json */,
+				1B6397A07C128A02901DA9EA /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		76D6AB472B3CAEC20009FC7E /* DissoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76D6AB6C2B3CAEC40009FC7E /* Build configuration list for PBXNativeTarget "DissoApp" */;
+			buildPhases = (
+				76D6AB442B3CAEC20009FC7E /* Sources */,
+				76D6AB452B3CAEC20009FC7E /* Frameworks */,
+				76D6AB462B3CAEC20009FC7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DissoApp;
+			packageProductDependencies = (
+				767AF5062B3DDC39001C2949 /* KeychainSwift */,
+				767F74AE2B470F4E002F34D7 /* SQLite */,
+			);
+			productName = DissoApp;
+			productReference = 76D6AB482B3CAEC20009FC7E /* DissoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		76D6AB572B3CAEC40009FC7E /* DissoAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76D6AB6F2B3CAEC40009FC7E /* Build configuration list for PBXNativeTarget "DissoAppTests" */;
+			buildPhases = (
+				76D6AB542B3CAEC40009FC7E /* Sources */,
+				76D6AB552B3CAEC40009FC7E /* Frameworks */,
+				76D6AB562B3CAEC40009FC7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76D6AB5A2B3CAEC40009FC7E /* PBXTargetDependency */,
+			);
+			name = DissoAppTests;
+			productName = DissoAppTests;
+			productReference = 76D6AB582B3CAEC40009FC7E /* DissoAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		76D6AB612B3CAEC40009FC7E /* DissoAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76D6AB722B3CAEC40009FC7E /* Build configuration list for PBXNativeTarget "DissoAppUITests" */;
+			buildPhases = (
+				76D6AB5E2B3CAEC40009FC7E /* Sources */,
+				76D6AB5F2B3CAEC40009FC7E /* Frameworks */,
+				76D6AB602B3CAEC40009FC7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76D6AB642B3CAEC40009FC7E /* PBXTargetDependency */,
+			);
+			name = DissoAppUITests;
+			productName = DissoAppUITests;
+			productReference = 76D6AB622B3CAEC40009FC7E /* DissoAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		76D6AB402B3CAEC20009FC7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				ORGANIZATIONNAME = Ishaaq;
+				TargetAttributes = {
+					76D6AB472B3CAEC20009FC7E = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					76D6AB572B3CAEC40009FC7E = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 76D6AB472B3CAEC20009FC7E;
+					};
+					76D6AB612B3CAEC40009FC7E = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 76D6AB472B3CAEC20009FC7E;
+					};
+				};
+			};
+			buildConfigurationList = 76D6AB432B3CAEC20009FC7E /* Build configuration list for PBXProject "DissoApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 76D6AB3F2B3CAEC20009FC7E;
+			packageReferences = (
+				767AF5052B3DDC39001C2949 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				767F74AD2B470F4D002F34D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
+			productRefGroup = 76D6AB492B3CAEC20009FC7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				76D6AB472B3CAEC20009FC7E /* DissoApp */,
+				76D6AB572B3CAEC40009FC7E /* DissoAppTests */,
+				76D6AB612B3CAEC40009FC7E /* DissoAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		76D6AB462B3CAEC20009FC7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76D6AB532B3CAEC40009FC7E /* Preview Assets.xcassets in Resources */,
+				76D6AB502B3CAEC40009FC7E /* Assets.xcassets in Resources */,
+				087C139A53DB2513184A2635 /* awsconfiguration.json in Resources */,
+				51FF46E9E1AA9EB29485EF83 /* amplifyconfiguration.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76D6AB562B3CAEC40009FC7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76D6AB602B3CAEC40009FC7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		76D6AB442B3CAEC20009FC7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FD0C4A2B3F658000F78E15 /* TransactionCard.swift in Sources */,
+				763DFCDF2B4C4126001FA403 /* StatsUi.swift in Sources */,
+				76C8ACEB2B7040D7005EB11E /* BrowseView.swift in Sources */,
+				76FD0C4C2B3F670D00F78E15 /* TransactionDetailView.swift in Sources */,
+				76FB90102B4DB73F00CB537A /* SpendingOverTimeView.swift in Sources */,
+				76D6AB7D2B3CB3210009FC7E /* RegisterUi.swift in Sources */,
+				766340B92B6804B2006AA50B /* BudgetCreationUi.swift in Sources */,
+				76FB90122B4DB9E800CB537A /* SummaryView.swift in Sources */,
+				7611545E2B4F158C00288A89 /* AccountView.swift in Sources */,
+				76CD3FDE2B4884780091356C /* CategoryCreationView.swift in Sources */,
+				76FB900E2B4DB73400CB537A /* TopExpenseCategoriesView.swift in Sources */,
+				76FB90162B4DC96F00CB537A /* MonthYearPickerView.swift in Sources */,
+				767AF4FE2B3DCAE6001C2949 /* ScanDocumetView.swift in Sources */,
+				76C610302B49B99400677A72 /* CategorySelectionView.swift in Sources */,
+				767F74B62B474F68002F34D7 /* KeychainManager.swift in Sources */,
+				76204AE82B51870C003A7426 /* ShoppingListUi.swift in Sources */,
+				76FB900C2B4DB72800CB537A /* CategoryWiseSpendingView.swift in Sources */,
+				766340B52B67FE9E006AA50B /* BudgetUi.swift in Sources */,
+				76D6AB7F2B3CB3370009FC7E /* MainView.swift in Sources */,
+				76D6AB4E2B3CAEC20009FC7E /* ContentView.swift in Sources */,
+				767F74B42B471A97002F34D7 /* DatabaseManager.swift in Sources */,
+				76C85F322B449EBF006D3D66 /* AllTransactionsView.swift in Sources */,
+				76D6AB762B3CB0EE0009FC7E /* NetworkService.swift in Sources */,
+				76D6AB4C2B3CAEC20009FC7E /* DissoAppApp.swift in Sources */,
+				76D6AB7B2B3CB30C0009FC7E /* LoginView.swift in Sources */,
+				76CD3FE02B48933F0091356C /* CategoryListView.swift in Sources */,
+				76FB90142B4DC33600CB537A /* RecentSpendingTimeView.swift in Sources */,
+				76C6102E2B49B81E00677A72 /* CategoryEditView.swift in Sources */,
+				767AF5002B3DCBB8001C2949 /* ManualTransactionView.swift in Sources */,
+				76D6AB782B3CB0FF0009FC7E /* Model.swift in Sources */,
+				762372BA2B41F6B100FBF4C0 /* TransactionViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76D6AB542B3CAEC40009FC7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76D6AB5D2B3CAEC40009FC7E /* DissoAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76D6AB5E2B3CAEC40009FC7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76D6AB692B3CAEC40009FC7E /* DissoAppUITestsLaunchTests.swift in Sources */,
+				76D6AB672B3CAEC40009FC7E /* DissoAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76D6AB5A2B3CAEC40009FC7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76D6AB472B3CAEC20009FC7E /* DissoApp */;
+			targetProxy = 76D6AB592B3CAEC40009FC7E /* PBXContainerItemProxy */;
+		};
+		76D6AB642B3CAEC40009FC7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76D6AB472B3CAEC20009FC7E /* DissoApp */;
+			targetProxy = 76D6AB632B3CAEC40009FC7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		76D6AB6A2B3CAEC40009FC7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		76D6AB6B2B3CAEC40009FC7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		76D6AB6D2B3CAEC40009FC7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DissoApp/DissoApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DissoApp/Preview Content\"";
+				DEVELOPMENT_TEAM = YND35R5YHM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DissoApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera to scan ";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "need to connect to backend";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaaq.DissoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		76D6AB6E2B3CAEC40009FC7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DissoApp/DissoApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DissoApp/Preview Content\"";
+				DEVELOPMENT_TEAM = YND35R5YHM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DissoApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera to scan ";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "need to connect to backend";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaaq.DissoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		76D6AB702B3CAEC40009FC7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YND35R5YHM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaaq.DissoAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DissoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DissoApp";
+			};
+			name = Debug;
+		};
+		76D6AB712B3CAEC40009FC7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YND35R5YHM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaaq.DissoAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DissoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DissoApp";
+			};
+			name = Release;
+		};
+		76D6AB732B3CAEC40009FC7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YND35R5YHM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaaq.DissoAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DissoApp;
+			};
+			name = Debug;
+		};
+		76D6AB742B3CAEC40009FC7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YND35R5YHM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ishaaq.DissoAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DissoApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		76D6AB432B3CAEC20009FC7E /* Build configuration list for PBXProject "DissoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76D6AB6A2B3CAEC40009FC7E /* Debug */,
+				76D6AB6B2B3CAEC40009FC7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76D6AB6C2B3CAEC40009FC7E /* Build configuration list for PBXNativeTarget "DissoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76D6AB6D2B3CAEC40009FC7E /* Debug */,
+				76D6AB6E2B3CAEC40009FC7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76D6AB6F2B3CAEC40009FC7E /* Build configuration list for PBXNativeTarget "DissoAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76D6AB702B3CAEC40009FC7E /* Debug */,
+				76D6AB712B3CAEC40009FC7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76D6AB722B3CAEC40009FC7E /* Build configuration list for PBXNativeTarget "DissoAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76D6AB732B3CAEC40009FC7E /* Debug */,
+				76D6AB742B3CAEC40009FC7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		767AF5052B3DDC39001C2949 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
+		767F74AD2B470F4D002F34D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		767AF5062B3DDC39001C2949 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 767AF5052B3DDC39001C2949 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		767F74AE2B470F4E002F34D7 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 767F74AD2B470F4D002F34D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 76D6AB402B3CAEC20009FC7E /* Project object */;
+}
