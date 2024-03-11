@@ -1,108 +1,14 @@
-
-//import SwiftUI
-//
-//struct MainView: View {
-//    @Binding var isUserLoggedIn: Bool
-//    @StateObject private var viewModel = TransactionViewModel()
-//    @State private var showingManualTransactionView = false
-//    @State private var selectedTab = 0
-//    
-//    init(isUserLoggedIn: Binding<Bool>) {
-//        _isUserLoggedIn = isUserLoggedIn
-//        // Set a custom background color for the TabView
-//        UITabBar.appearance().barTintColor = UIColor(named: "PrimaryColor")
-//        UITabBar.appearance().tintColor = UIColor.blue
-//    }
-//
-//    var body: some View {
-//        NavigationView {
-//            TabView {
-//                // Home tab
-//                VStack {
-////                    Image("ExpenseExplorerLogo") // Add your app logo
-////                        .resizable()
-////                        .aspectRatio(contentMode: .fit)
-////                        .frame(width: 100, height: 100)
-//                    Text("Welcome to Expense Explorer")
-//                        .font(.title)
-//                        .foregroundColor(.primary)
-//                        .padding(.top, 16)
-//                    Text("Track your expenses effortlessly.")
-//                        .font(.subheadline)
-//                        .foregroundColor(.secondary)
-//                        .padding(.top, 8)
-//                    Spacer()
-//                }
-//                .tabItem {
-//                    Label("Home", systemImage: "house.fill")
-//                }
-//                
-//                // Transactions tab
-//                AllTransactionsView(viewModel: viewModel)
-//                    .tabItem {
-//                        Label("Transactions", systemImage: "list.bullet")
-//                    }
-//                
-//                // Stats tab
-//                StatsUi(viewModel: viewModel)
-//                    .tabItem {
-//                        Label("Stats", systemImage: "chart.bar.fill")
-//                    }
-//                
-//                // Account tab
-//                AccountView(isUserLoggedIn: $isUserLoggedIn, viewModel: viewModel)
-//                    .tabItem {
-//                        Label("Account", systemImage: "person.fill")
-//                    }
-//                
-//                // Shopping List tab
-//                ShoppingListUI(viewModel: viewModel)
-//                    .tabItem {
-//                        Label("Shopping List", systemImage: "cart.fill")
-//                    }
-//                BudgetUi(viewModel: viewModel)
-//                    .tabItem {
-//                        Label("Budget", systemImage: "banknote.fill")
-//                    }
-//                
-//            }
-//            .navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button("Add transaction"){
-//                        showingManualTransactionView = true
-//                    }
-//                }
-//            }
-//        }
-//        
-//        .sheet(isPresented: $showingManualTransactionView) {
-//            ManualTransactionView(viewModel: viewModel)
-//        }
-//        .onAppear {
-//            if KeychainManager.shared.isLoggedIn() {
-//                viewModel.fetchTransactionsFromDB()
-//            }
-//        }
-//    }
-//}
-//
-//struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView(isUserLoggedIn: .constant(true))
-//    }
-//}
-
-
-
 import SwiftUI
 
 struct MainView: View {
     @Binding var isUserLoggedIn: Bool
     @ObservedObject var viewModel: TransactionViewModel
-   
+
     @State private var showingManualTransactionView = false
     @State private var selectedTab: Int = 0
+    
+    @State private var showingHelpView = false
+
 
     var body: some View {
         NavigationView {
@@ -111,96 +17,265 @@ struct MainView: View {
                 switch selectedTab {
                 case 0:
                     // Home tab content
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Welcome to Expense Explorer")
-                            .font(.title)
-                            .fontWeight(.bold)
-                        Text("Description of app etc")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        
-                        TotalBudgetView(viewModel: viewModel)
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 10) { // Increased spacing
+                            Text("Welcome to Expense Explorer")
+                                .font(.title2) // Slightly smaller font for better fit
+                                .fontWeight(.bold)
+                                .padding(.vertical, 2) // Reduced padding
+
+                            Text("Track and manage your expenses efficiently and discover saving opportunities.")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .padding(.bottom, 5)
+
+                            TotalBudgetView(viewModel: viewModel)
+                            
+                            ClosestBudgetCategoryView(viewModel: viewModel)
+                                .padding(.vertical, 5) // Adjusted padding
+
+                            SavingOpportunitiesTeaserView(viewModel: viewModel)
+                                .padding(.vertical, 5) // Adjusted padding
+
+                            // Category Cards
+                            let spendingComparisons = viewModel.spendingComparisonByAllCategories()
+                            ForEach(spendingComparisons.keys.sorted(), id: \.self) { category in
+                                if let comparison = spendingComparisons[category] {
+                                    CategoryCardView(category: category, lastMonthSpending: comparison.lastMonth, thisMonthSpending: comparison.thisMonth)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding()
                 case 1:
                     AllTransactionsView(viewModel: viewModel)
                 case 2:
-                    BrowseView(viewModel: viewModel)
+                    BrowseView(viewModel: viewModel, isUserLoggedIn: $isUserLoggedIn)
+                case 3:
+                    AccountView(isUserLoggedIn: $isUserLoggedIn, viewModel: viewModel)
                 default:
-                    Text("Additional View Content")
+                    Text("Additional Content")
                 }
-                
+
                 Spacer() // Pushes the content and tabs to the top and bottom respectively
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Add transaction") {
-                        showingManualTransactionView = true
-                    }
-                }
-            }
-            
+            .navigationBarTitle("Expense Explorer", displayMode: .inline)
+//            .navigationBarItems(leading: addButton)
+            .navigationBarItems(leading: addButton, trailing: infoButton) // Add the help button here
+                    
         }
         .sheet(isPresented: $showingManualTransactionView) {
             ManualTransactionView(viewModel: viewModel)
         }
-        .onAppear {
-            if KeychainManager.shared.isLoggedIn() {
-                viewModel.fetchTransactionsFromDB()
-                viewModel.loadBudgets() // This should trigger a state update in the view model
-            }
-        }
-        // Tab bar
-        .overlay(
-            TabBarOverlay(selectedTab: $selectedTab)
-            ,alignment: .bottom
-        )
         
+        .sheet(isPresented: $showingHelpView) {
+                    HelpView()
+                }
+        .onAppear {
+            viewModel.fetchTransactionsFromDB()
+            viewModel.loadBudgets()
+        }
+        // Improved Tab bar overlay
+        .overlay(
+            TabBarOverlay(selectedTab: $selectedTab),
+            alignment: .bottom
+        )
+    }
+
+    private var addButton: some View {
+        Button(action: {
+            showingManualTransactionView = true
+            viewModel.resetTransactionDetails()
+        }) {
+            Image(systemName: "plus")
+                .foregroundColor(.blue)
+                .imageScale(.large)
+        }
     }
     
+    private var infoButton: some View{
+        Button(action: {
+            showingHelpView = true
+        }) {
+            Image(systemName: "info")
+                .foregroundColor(.blue)
+                .imageScale(.large)
+        }
+    }
 }
+
+struct HelpView: View {
+    var body: some View {
+        NavigationView {
+            List {
+                Section(header: Text("Welcome")) {
+                    VStack(alignment: .leading) {
+                        Text("Budgeting App for University Students")
+                            .font(.headline)
+                            .padding(.bottom, 2)
+                        
+                        Text("Designed to simplify budgeting and managing expenses, making financial management intuitive and effective for university students.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical)
+                    .listRowBackground(Color(UIColor.systemGroupedBackground))
+                }
+                
+                featureSection
+                
+                savingOpportunitiesSection
+                
+                dataTrendsSection
+            }
+            .listStyle(InsetGroupedListStyle())
+            .navigationTitle("How to Use")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Close") {
+                        // Dismiss action
+                    }
+                }
+            }
+        }
+    }
+    
+    private var featureSection: some View {
+        Section(header: Text("Features")) {
+            FeatureItemView(iconName: "doc.text.viewfinder", title: "Receipt Uploads", description: "Automatically fill in transactions by uploading receipts and copying and pasting your products and prices.")
+            
+            FeatureItemView(iconName: "square.and.pencil", title: "Manual Entry", description: "Enter your own products and prices directly.")
+            
+            FeatureItemView(iconName: "rectangle.grid.1x2.fill", title: "Categorization", description: "Customizable categories for transaction organization.")
+            
+            FeatureItemView(iconName: "chart.pie.fill", title: "Budget Creation", description: "Manage finances with total and category-specific budgets.")
+            
+            FeatureItemView(iconName: "cart.fill", title: "Add Transactions on-the-go", description: "Easily add transactions while shopping, making it seamless to track expenses in real-time.")
+            
+            FeatureItemView(iconName: "antenna.radiowaves.left.and.right", title: "Offline Usage", description: "Use the app anywhere, even without an internet connection, for utmost convenience.")
+        }
+    }
+
+    // Additional Sections if needed based on your request can be similarly structured.
+    // Ensure the sections for Saving Opportunities and Data & Trends are also updated to match this high-fidelity approach.
+
+    
+    private var savingOpportunitiesSection: some View {
+        Section(header: Text("Saving Opportunities")) {
+            FeatureItemView(iconName: "tag.fill", title: "Discover Savings", description: "Find where you can save on items across different stores.")
+        }
+    }
+    
+    private var dataTrendsSection: some View {
+        Section(header: Text("Data & Trends")) {
+            FeatureItemView(iconName: "waveform.path.ecg", title: "Spending Insights", description: "Breakdown of transactions for better understanding.")
+            
+            FeatureItemView(iconName: "arrow.triangle.2.circlepath", title: "Month-to-Month Comparison", description: "View trends and compare spending across months.")
+        }
+    }
+}
+
+struct FeatureItemView: View {
+    let iconName: String
+    let title: String
+    let description: String
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            Image(systemName: iconName)
+                .foregroundColor(.blue)
+                .frame(width: 24, height: 24)
+                .padding(.top, 4)
+            
+            VStack(alignment: .leading) {
+                Text(title)
+                    .fontWeight(.bold)
+                
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(.vertical)
+    }
+}
+
+
+
 
 struct TabBarOverlay: View {
     @Binding var selectedTab: Int
-    
+
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Spacer()
-                HStack {
-                    TabBarButton(iconName: "house.fill", isSelected: selectedTab == 0) { selectedTab = 0 }
-                    TabBarButton(iconName: "list.bullet", isSelected: selectedTab == 1) { selectedTab = 1 }
-                    TabBarButton(iconName: "magnifyingglass", isSelected: selectedTab == 2) { selectedTab = 2 }
-                }
-                .frame(width: geometry.size.width, height: 50) // Adjust the height as needed for your tab bar
-                .background(Color(UIColor.systemBackground))
-            }
+        HStack {
+            TabBarButton(iconName: "house.fill", label: "Home", isSelected: selectedTab == 0) { selectedTab = 0 }
+            TabBarButton(iconName: "tray.full.fill", label: "Transactions", isSelected: selectedTab == 1) { selectedTab = 1 }
+            TabBarButton(iconName: "magnifyingglass", label: "Browse", isSelected: selectedTab == 2) { selectedTab = 2 }
+            TabBarButton(iconName: "person.fill", label: "Account", isSelected: selectedTab == 3) { selectedTab = 3 }
         }
+        .padding(.vertical, 8)
+        .background(BlurBackground())
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(.horizontal)
+        .animation(.easeInOut)
     }
+}
+
+struct BlurBackground: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+        return view
+    }
+
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
 }
 
 struct TabBarButton: View {
     let iconName: String
+    let label: String
     let isSelected: Bool
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
-            Image(systemName: iconName)
-                .accentColor(isSelected ? .blue : .gray)
-                .frame(maxWidth: .infinity)
+            VStack {
+                Image(systemName: iconName)
+                    .foregroundColor(isSelected ? .blue : .gray)
+                Text(label)
+                    .font(.caption)
+                    .foregroundColor(isSelected ? .blue : .gray)
+            }
+            .frame(maxWidth: .infinity)
         }
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        // Create a new instance of TransactionViewModel for the preview
-        let viewModel = TransactionViewModel()
-        
-        // Pass this instance to MainView
-        MainView(isUserLoggedIn: .constant(true), viewModel: viewModel)
+struct SavingOpportunitiesTeaserView: View {
+    @ObservedObject var viewModel: TransactionViewModel
+    var body: some View {
+        NavigationLink(destination: SavingsOpportunitiesView(viewModel: viewModel)) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Discover Saving Opportunities")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                
+                Text("Get insights on how to save more based on your spending habits.")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                Text("See More")
+                    .font(.subheadline)
+                    .foregroundColor(.blue)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(UIColor.secondarySystemBackground))
+            .cornerRadius(10)
+            .shadow(radius: 5)
+        }
     }
 }
-

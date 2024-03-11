@@ -154,6 +154,41 @@ struct TotalBudgetView: View {
 }
 
 
+struct ClosestBudgetCategoryView: View {
+    @ObservedObject var viewModel: TransactionViewModel
+
+    var body: some View {
+        if let closestCategory = viewModel.closestCategoryToLimit() {
+            VStack(alignment: .leading) {
+                Text("\(closestCategory.category) Budget").font(.headline)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Budget: £\(closestCategory.limit, specifier: "%.2f")")
+                        Text("Days left: \(closestCategory.remainingDays)")
+                        Text("Remaining: £\(closestCategory.remaining, specifier: "%.2f")")
+                    }
+                    Spacer()
+                    ProgressBar(value: closestCategory.spentPercentage, maxValue: 1)
+                        .frame(height: 20)
+                        .cornerRadius(10)
+                }
+                .padding()
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+        }
+    }
+}
+
+
+
+
+
+
 
 struct BudgetUi_Previews: PreviewProvider {
     static var previews: some View {

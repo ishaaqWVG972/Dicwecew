@@ -6,55 +6,58 @@ class DatabaseManager {
     static let shared = DatabaseManager()
     private var database: Connection!
     
+    
     // Define your tables
-    private let users = Table("users")
-    private let tokens = Table("tokens")
-    private let transactions = Table("transactions")
-    private let products = Table("products")
-    private let categories = Table("categories")
-    private let budgets = Table("budgets")
+     let users = Table("users")
+     let tokens = Table("tokens")
+     let transactions = Table("transactions")
+     let products = Table("products")
+     let categories = Table("categories")
+     let budgets = Table("budgets")
     
     // Define columns for each table
     // Example for 'users' table
-    private let userId = Expression<Int64>("id")
-    private let userName = Expression<String>("name")
-    private let userEmail = Expression<String>("email")
-    private let userPasswordHash = Expression<String>("password_hash")
+     let userId = Expression<Int64>("id")
+     let userName = Expression<String>("name")
+     let userEmail = Expression<String>("email")
+     let userPasswordHash = Expression<String>("password_hash")
     
 //     Columns for the Transaction table
-      private let transactionId = Expression<String>("id") // UUIDs as Strings
-      private let transactionCompanyName = Expression<String>("company_name")
-      private let transactionTotalPrice = Expression<Double>("total_price")
-      private let transactionUserSelectedDate = Expression<String?>("user_selected_date")
-      private let transactionUserId = Expression<Int64>("user_id")
-      private let transactionCategoryId = Expression<Int64?>("category_id") // Optional category reference
+       let transactionId = Expression<String>("id") // UUIDs as Strings
+       let transactionCompanyName = Expression<String>("company_name")
+       let transactionTotalPrice = Expression<Double>("total_price")
+       let transactionUserSelectedDate = Expression<String?>("user_selected_date")
+       let transactionUserId = Expression<Int64>("user_id")
+       let transactionCategoryId = Expression<Int64?>("category_id") // Optional category reference
   
       // Columns for the Product table
-      private let productId = Expression<String>("id") // UUIDs as Strings
-      private let productName = Expression<String>("name")
-      private let productPrice = Expression<Double>("price")
-      private let productTransactionId = Expression<String>("transaction_id")
-      private let productCompanyName = Expression<String>("company_name")
+       let productId = Expression<String>("id") // UUIDs as Strings
+       let productName = Expression<String>("name")
+       let productPrice = Expression<Double>("price")
+       let productTransactionId = Expression<String>("transaction_id")
+       let productCompanyName = Expression<String>("company_name")
 
 //       Columns for the Token table
-      private let tokenId = Expression<String>("id") // UUIDs as Strings
-      private let tokenValue = Expression<String>("value")
-      private let tokenUserId = Expression<Int64>("user_id")
+       let tokenId = Expression<String>("id") // UUIDs as Strings
+       let tokenValue = Expression<String>("value")
+       let tokenUserId = Expression<Int64>("user_id")
   
       private let categoryId = Expression<Int64>("id")
       private let categoryName = Expression<String>("name")
     
     //Column for budget table
-    private let budgetId = Expression<Int64>("id")
-    private let budgetUserId = Expression<Int64>("user_id")
-    private let budgetCategoryName = Expression<String?>("category_name") // Nullable for total budget
-    private let budgetLimit = Expression<Double>("limit")
-    private let budgetTimeFrame = Expression<String>("time_frame")
-    private let budgetStartDate = Expression<Date>("start_date")
+     let budgetId = Expression<Int64>("id")
+     let budgetUserId = Expression<Int64>("user_id")
+     let budgetCategoryName = Expression<String?>("category_name") // Nullable for total budget
+     let budgetLimit = Expression<Double>("limit")
+     let budgetTimeFrame = Expression<String>("time_frame")
+     let budgetStartDate = Expression<Date>("start_date")
     private let budgetEndDate = Expression<Date>("end_date")
 
-
-    
+     let productMappings = Table("productMappings")
+     let mappingId = Expression<Int64>("id")
+     let canonicalName = Expression<String>("canonicalName")
+     let variationName = Expression<String>("variationName")
     
     init() {
         do {
@@ -69,6 +72,7 @@ class DatabaseManager {
             try createProductsTable()
             try createCategoriesTable()
             try createBudgetsTable()
+            try createProductMappingsTable()
             
          
             
@@ -78,7 +82,7 @@ class DatabaseManager {
         }
     }
     
-    private func createUserTable() throws {
+     func createUserTable() throws {
         try database.run(users.create(ifNotExists: true) { t in
             t.column(userId, primaryKey: .autoincrement)
             t.column(userName)
@@ -88,7 +92,7 @@ class DatabaseManager {
         print("Users table created")
     }
     
-    private func createTransactionsTable() throws {
+     func createTransactionsTable() throws {
            try database.run(transactions.create(ifNotExists: true) { t in
                t.column(transactionId, primaryKey: true) // UUID as String
                t.column(transactionCompanyName)
@@ -99,7 +103,7 @@ class DatabaseManager {
            })
        }
    
-       private func createProductsTable() throws {
+        func createProductsTable() throws {
            try database.run(products.create(ifNotExists: true) { t in
                t.column(productId, primaryKey: true) // UUID as String
                t.column(productName)
@@ -110,7 +114,7 @@ class DatabaseManager {
            })
        }
    
-       private func createTokensTable() throws {
+        func createTokensTable() throws {
            try database.run(tokens.create(ifNotExists: true) { t in
                t.column(tokenId, primaryKey: true) // UUID as String
                t.column(tokenValue)
@@ -118,7 +122,7 @@ class DatabaseManager {
            })
        }
    
-       private func createCategoriesTable() throws{
+        func createCategoriesTable() throws{
            try database.run(categories.create(ifNotExists:true){t in
                t.column(categoryId, primaryKey: .autoincrement)
                t.column(categoryName)
@@ -126,7 +130,7 @@ class DatabaseManager {
            })
        }
     
-    private func createBudgetsTable() throws {
+     func createBudgetsTable() throws {
         try database.run(budgets.create(ifNotExists: true) { t in
             t.column(budgetId, primaryKey: true)
             t.column(budgetUserId)
@@ -137,6 +141,16 @@ class DatabaseManager {
             t.column(budgetEndDate)
         })
         print("Budgets table created")
+    }
+    
+    
+     func createProductMappingsTable() throws {
+        try database.run(productMappings.create(ifNotExists: true) { t in
+            t.column(mappingId, primaryKey: .autoincrement)
+            t.column(canonicalName)
+            t.column(variationName, unique: true)
+        })
+        print("ProductMappings table created")
     }
     
     
@@ -223,23 +237,26 @@ class DatabaseManager {
         }
     
     
-         func fetchProducts(forTransactionId transactionId: UUID) throws -> [Product] {
-            var productsArray = [Product]()
-            let query = products.filter(productTransactionId == transactionId.uuidString)
-            for productRow in try database.prepare(query) {
-                // Extract product details
-                let idString = productRow[productId]
-                let name = productRow[productName]
-                let price = productRow[productPrice]
     
-                // Convert String to UUID
-                guard let uuid = UUID(uuidString: idString) else { continue }
-    
-                let product = Product(id: uuid, name: name, price: price)
-                productsArray.append(product)
-            }
-            return productsArray
+    func fetchProducts(forTransactionId transactionId: UUID) throws -> [Product] {
+        var productsArray = [Product]()
+        let query = products.filter(productTransactionId == transactionId.uuidString)
+        for productRow in try database.prepare(query) {
+            let idString = productRow[productId]
+            let variationName = productRow[productName]
+            let price = productRow[productPrice]
+
+            guard let uuid = UUID(uuidString: idString) else { continue }
+            
+            // Assuming you have a method to fetch the canonical name for a given variation
+            let canonicalName = try canonicalNameForItem(variationName)
+
+            let product = Product(id: uuid, name: canonicalName, price: price)
+            productsArray.append(product)
         }
+        return productsArray
+    }
+
     
     
     func deleteTransaction(transactionId: UUID) throws {
@@ -306,67 +323,79 @@ class DatabaseManager {
     }
     
     func fetchCheapestOptions(for items: [String]) throws -> [String: String] {
+        // This dictionary maps items to their canonical names. You'll need to populate it accordingly.
+        var itemToCanonicalNameMap: [String: String] = [:]
+        
+        // Populate itemToCanonicalNameMap by fetching mappings from the database
+        let allMappings = try fetchAllMappings()
+        allMappings.forEach { mapping in
+            itemToCanonicalNameMap[mapping.variation] = mapping.canonical
+        }
+        
         var cheapestOptions = [String: String]()
         for item in items {
-            let query = products.filter(productName == item).order(productPrice.asc)
-            if let cheapestProduct = try database.pluck(query) {
-                let company = cheapestProduct[productCompanyName]
-                cheapestOptions[item] = company
+            // Use canonical name if available, else use item itself
+            let canonicalOrOriginalName = itemToCanonicalNameMap[item] ?? item
+            
+            // Adjust the query to filter by productName instead
+            // This assumes that productName stores the variation name
+            let query = products.filter(productName == canonicalOrOriginalName).order(productPrice.asc)
+            
+            // Attempt to find the cheapest product for the canonical/variation name
+            if let cheapestProductRow = try database.pluck(query) {
+                let company = cheapestProductRow[productCompanyName]
+                cheapestOptions[item] = company // Mapping original item name to company for simplicity
             }
         }
         return cheapestOptions
     }
+
+
     
     func calculateTotalCostPerStore(for items: [String]) throws -> [String: Double] {
         var totalCostPerStore = [String: Double]()
+        
+        // Fetch canonical names for items
+        let canonicalItems = try items.map { try canonicalNameForItem($0) }
+        
+        // Fetch unique stores from products
         let uniqueStores = Set(try database.prepare(products.select(productCompanyName)).map { $0[productCompanyName] })
         
         for store in uniqueStores {
-            var totalCost = 0.0
-            for item in items {
-                let query = products.filter(productName == item && productCompanyName == store).order(productPrice.asc)
+            var storeTotalCost = 0.0
+            
+            for item in canonicalItems {
+                let query = products
+                    .filter(productCompanyName == store && canonicalName == item) // Use canonical name
+                    .order(productPrice.asc)
+                
                 if let product = try database.pluck(query) {
-                    totalCost += product[productPrice]
+                    storeTotalCost += product[productPrice]
                 }
             }
-            totalCostPerStore[store] = totalCost
+            
+            totalCostPerStore[store] = storeTotalCost
         }
+        
         return totalCostPerStore
     }
+
     // This function calculates which store will be the cheapest based on the total cost of items in the shopping list.
     func calculateCheapestStore(for items: [String], userId: Int64) throws -> String {
-           // Step 1: Get stores where the user has shopped.
-           let userStoresQuery = transactions.filter(transactionUserId == userId).select(transactionCompanyName)
-           let userStores = Set(try database.prepare(userStoresQuery).map { $0[transactionCompanyName] })
+        // Fetch canonical names for items
+        let canonicalItems = try items.map { try canonicalNameForItem($0) }
+        
+        // Calculate total cost per store
+        let totalCostPerStore = try calculateTotalCostPerStore(for: canonicalItems)
+        
+        // Find the store with the lowest total cost
+        if let cheapest = totalCostPerStore.min(by: { $0.value < $1.value }) {
+            return cheapest.key
+        } else {
+            throw NSError(domain: "DatabaseManager", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unable to determine the cheapest store based on item availability."])
+        }
+    }
 
-           // Step 2: Check for each item if it's available in the user's stores and calculate costs.
-           var storeCosts = [String: Double]()
-           for store in userStores {
-               var storeTotal = 0.0
-               var allItemsAvailable = true
-
-               for item in items {
-                   let productQuery = products.filter(productName == item && productCompanyName == store).order(productPrice.asc)
-                   if let product = try database.pluck(productQuery) {
-                       storeTotal += product[productPrice]
-                   } else {
-                       allItemsAvailable = false
-                       break
-                   }
-               }
-
-               if allItemsAvailable {
-                   storeCosts[store] = storeTotal
-               }
-           }
-
-           // Step 3: Determine the cheapest store.
-           if let cheapestStore = storeCosts.min(by: { $0.value < $1.value }) {
-               return cheapestStore.key
-           } else {
-               throw NSError(domain: "DatabaseManager", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unable to determine the cheapest store based on user's shopping history and item availability."])
-           }
-       }
     
     func fetchDetailedCheapestOptions(for items: [String]) throws -> [String: (store: String, price: Double)] {
         var detailedOptions = [String: (store: String, price: Double)]()
@@ -458,6 +487,96 @@ class DatabaseManager {
         let totalSum = try database.scalar(query.select(transactionTotalPrice.sum)) ?? 0.0
         return totalSum
     }
+
+    
+    
+    
+    func insertOrUpdateProductMapping(userInput: String, canonicalName: String? = nil) throws {
+        let insert = productMappings.insert(
+            self.canonicalName <- (canonicalName ?? userInput),
+            self.variationName <- userInput
+        )
+        try database.run(insert)
+    }
+
+
+
+    
+    func fetchAllMappings() throws -> [(canonical: String, variation: String)] {
+        let mappingsQuery = productMappings.select(canonicalName, variationName)
+        var mappings: [(canonical: String, variation: String)] = []
+        
+        for mapping in try database.prepare(mappingsQuery) {
+            let fetchedMapping = (canonical: mapping[canonicalName], variation: mapping[variationName])
+            // Print each mapping as it's fetched to provide insight into what's being returned.
+            print("Fetched mapping: Canonical Name - '\(fetchedMapping.canonical)', Variation Name - '\(fetchedMapping.variation)'")
+            mappings.append(fetchedMapping)
+        }
+        
+        // Log the total number of mappings fetched for a high-level overview.
+        print("Total mappings fetched: \(mappings.count)")
+        
+        return mappings
+    }
+
+
+    
+ 
+    func canonicalNameForItem(_ itemName: String) throws -> String {
+        let query = productMappings.filter(variationName == itemName)
+        if let mapping = try database.pluck(query) {
+            return mapping[canonicalName]
+        }
+        return itemName // Return the item name itself if no mapping found
+    }
+
+    func fetchCheapestOptionsConsideringCanonicalNames(for items: [String]) throws -> [String: String] {
+        // Fetch all mappings from the database to build a map of canonical names to their variations
+        let allMappings = try fetchAllMappings()
+        var canonicalToVariationsMap: [String: [String]] = [:]
+        
+        // Populate the map
+        allMappings.forEach { mapping in
+            canonicalToVariationsMap[mapping.canonical, default: []].append(mapping.variation)
+        }
+        
+        var cheapestOptions = [String: String]()
+        
+        // Iterate over each item in the shopping list
+        for item in items {
+            // Find the canonical name for the item, if available
+            let canonicalName = allMappings.first(where: { $0.variation == item })?.canonical ?? item
+            // Find all variations for this canonical name, including the item itself
+            let variations = canonicalToVariationsMap[canonicalName, default: [item]]
+            
+            var cheapestPrice: Double = Double.infinity
+            var cheapestCompany: String?
+            
+            // Check each variation to find the cheapest option
+            for variation in variations {
+                let query = products.filter(productName == variation).order(productPrice.asc)
+                if let cheapestProductRow = try database.pluck(query), cheapestProductRow[productPrice] < cheapestPrice {
+                    cheapestPrice = cheapestProductRow[productPrice]
+                    cheapestCompany = cheapestProductRow[productCompanyName]
+                }
+            }
+            
+            // If a cheapest option was found among the variations, add it to the result
+            if let company = cheapestCompany {
+                cheapestOptions[item] = company
+            }
+        }
+        
+        return cheapestOptions
+    }
+    
+    
+    func fetchPriceForItemInStore(item: String, store: String) throws -> Double? {
+        let query = products.filter(productName == item && productCompanyName == store).order(productPrice.asc)
+        guard let product = try database.pluck(query) else { return nil }
+        return product[productPrice]
+    }
+    
 
 }
 

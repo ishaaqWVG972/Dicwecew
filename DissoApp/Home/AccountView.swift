@@ -1,21 +1,23 @@
 import SwiftUI
 
 struct AccountView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Binding var isUserLoggedIn: Bool
-    @StateObject var viewModel: TransactionViewModel
-    
+    @ObservedObject var viewModel: TransactionViewModel
+
     var body: some View {
         VStack {
-            Text("Account Settings")
-            // Add other account-related settings here
-
-            Spacer()
-            
+            // Your view content
             Button("Log Out") {
-                isUserLoggedIn = false
-                KeychainManager.shared.setLoggedInStatus(false)
+                print("Logging out...")
+                KeychainManager.shared.clearUserData()
+                DispatchQueue.main.async {
+                    self.isUserLoggedIn = false
+                    self.presentationMode.wrappedValue.dismiss()
+                    print("After setting isUserLoggedIn: \(self.isUserLoggedIn)")
+                }
             }
-            .padding()
         }
     }
 }
+

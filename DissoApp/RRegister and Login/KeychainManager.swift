@@ -35,10 +35,12 @@ class KeychainManager {
 
     // Clear all user data from the keychain (useful for log out)
     func clearUserData() {
-        keychain.delete(loggedInStatusKey)
-        keychain.delete(userIdKey)
-        print("User data cleared from Keychain")
-    }
+          keychain.delete(loggedInStatusKey)
+          keychain.delete(userIdKey)
+          setLoggedInStatus(false) // Explicitly set logged-in status to false
+          print("User data cleared from Keychain")
+      }
+
 
     // Convenience method to check if a user is currently logged in
     func isLoggedIn() -> Bool {

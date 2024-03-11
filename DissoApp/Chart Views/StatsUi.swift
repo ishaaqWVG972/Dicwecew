@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 import Charts
 
@@ -8,21 +6,25 @@ struct StatsUi: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
-                    // Summary view for top category
-                    SummaryView(viewModel: viewModel)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 16) { // Optimized spacing for clarity
+                    StatsSummaryView(viewModel: viewModel)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color(UIColor.systemBackground)) // Neutral background
+                        .cornerRadius(12)
+                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 2)
 
-                    // Charts section
-                    VStack(spacing: 20) {
+                    VStack(spacing: 16) {
                         ChartLink(destination: CategoryWiseSpendingView(viewModel: viewModel), title: "Category-Wise Spending")
-//                        ChartLink(destination: TopExpenseCategoriesView(viewModel: viewModel), title: "Top Expense Categories")
                         ChartLink(destination: SpendingOverTimeView(viewModel: viewModel), title: "Spending Over Time")
                         ChartLink(destination: RecentSpendingTimeView(viewModel: viewModel), title: "Recent Spending")
                     }
+                    .padding(.horizontal)
                 }
-                .padding()
+                .padding(.top)
             }
+            .background(Color(UIColor.secondarySystemGroupedBackground).edgesIgnoringSafeArea(.all))
             .navigationTitle("Stats")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -35,30 +37,53 @@ struct ChartLink<Destination: View>: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            ChartPreview(title: title)
-                .padding(.horizontal)
+            HStack {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.secondary)
+            }
+            .padding()
+            .background(Color(UIColor.secondarySystemBackground)) // Subtle background
+            .cornerRadius(8)
+            .shadow(color: .gray.opacity(0.2), radius: 3, x: 0, y: 2)
         }
+        .buttonStyle(PlainButtonStyle()) // Ensure native button behavior
     }
 }
 
-struct ChartPreview: View {
-    var title: String
-
+struct StatsSummaryView: View {
+    @ObservedObject var viewModel: TransactionViewModel
+    
     var body: some View {
-        Text(title)
-            .font(.headline)
-            .frame(maxWidth: .infinity, minHeight: 150)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.6), Color.blue.opacity(0.3)]), startPoint: .topLeading, endPoint: .bottomTrailing))
-            .cornerRadius(10)
-            .overlay(
-                Text("Tap for details")
-                    .font(.subheadline)
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.black.opacity(0.5))
-                    .cornerRadius(10)
-                    .padding(6),
-                alignment: .bottomTrailing
-            )
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Top Categories")
+                .font(.title2)
+                .fontWeight(.bold)
+            
+            ForEach(viewModel.topExpenseCategories(), id: \.category) { item in
+                HStack {
+                    Text(item.category)
+                        .font(.body)
+                        .foregroundColor(.primary)
+                    Spacer()
+                    Text("£\(item.amount, specifier: "%.2f")")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground)) // Light and neutral
+        .cornerRadius(12)
+        .shadow(radius: 2)
+    }
+}
+
+struct StatsUi_Previews: PreviewProvider {
+    static var previews: some View {
+        StatsUi()
     }
 }

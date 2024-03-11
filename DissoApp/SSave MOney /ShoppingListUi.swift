@@ -6,70 +6,74 @@ struct ShoppingListUI: View {
     @State private var showingDetails = false
     @State private var recommendedStore: String = ""
     @State private var showError: Bool = false
-    @StateObject var viewModel = TransactionViewModel()
+    @ObservedObject var viewModel: TransactionViewModel
     
     var body: some View {
-        VStack {
-            Text("Shopping List")
-                .font(.largeTitle)
-                .padding()
-            
-            HStack {
-                TextField("Add item...", text: $newItemName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: addItem) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.green)
-                }
-            }
-            .padding()
-            List {
-                ForEach(shoppingItems, id: \.self) { item in
-                    HStack {
-                        Text(item)
-                            .padding()
-                        Spacer()
-                    }
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(5)
-                }
-                .onDelete(perform: deleteItem)
-            }
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Text("Shopping List")
+                        .font(.largeTitle)
+                        .padding()
 
-            
-            Button("Get Cheapest Store") {
-                calculateCheapestStore()
-            }
-            .buttonStyle(ActionButtonStyle())
-            
-            if !recommendedStore.isEmpty {
-                Text("We recommend \(recommendedStore) for the lowest total cost.")
+                    HStack {
+                        TextField("Add item...", text: $newItemName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button(action: addItem) {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.green)
+                        }
+                    }
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(5)
-                
-                Button("Details") {
-                    showingDetails = true
+
+                    LazyVStack {
+                        ForEach(shoppingItems, id: \.self) { item in
+                            HStack {
+                                Text(item)
+                                    .padding()
+                                Spacer()
+                            }
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(5)
+                        }
+                        .onDelete(perform: deleteItem)
+                    }
+
+                    Button("Get Cheapest Store") {
+                        calculateCheapestStore()
+                    }
+                    .buttonStyle(ActionButtonStyle())
+
+                    if !recommendedStore.isEmpty {
+                        recommendationView
+                    }
                 }
-                .padding()
-                .background(Color.purple)
-                .foregroundColor(.white)
-                .cornerRadius(5)
             }
-            
-            Spacer()
-        }
-        .sheet(isPresented: $showingDetails) {
-            // DetailsView or any other view you want to present
-            CheapestOptionsDetailView(shoppingItems: shoppingItems)
-        }
-        .alert("Error", isPresented: $showError, actions: {}) {
-            Text("An error occurred. Please try again.")
+            .navigationTitle("Shopping List")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
+    
+    private var recommendationView: some View {
+          VStack {
+              Text("We recommend \(recommendedStore) for the lowest total cost.")
+                  .padding()
+                  .background(Color.blue)
+                  .foregroundColor(.white)
+                  .cornerRadius(5)
+              
+              Button("Details") {
+                  showingDetails = true
+              }
+              .padding()
+              .background(Color.purple)
+              .foregroundColor(.white)
+              .cornerRadius(5)
+          }
+          .padding(.bottom, 50) // Add padding at the bottom to ensure content is not cut off
+      }
     
     private func addItem() {
         guard !newItemName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
@@ -80,18 +84,22 @@ struct ShoppingListUI: View {
     private func calculateCheapestStore() {
          guard let userId = KeychainManager.shared.getUserId() else {
              print("Error: User ID not found.")
-             // Handle the user ID not being found appropriately
+             showError = true
              return
          }
 
-         do {
-             let store = try DatabaseManager.shared.calculateCheapestStore(for: shoppingItems, userId: userId)
-             self.recommendedStore = store
-         } catch {
-             // Handle any errors in finding the cheapest store
-             print("Error calculating the cheapest store: \(error.localizedDescription)")
+         viewModel.calculateCheapestStore(for: shoppingItems, userId: userId) { result in
+             switch result {
+             case .success(let store):
+                 self.recommendedStore = store
+             case .failure(let error):
+                 print("Error calculating the cheapest store: \(error.localizedDescription)")
+                 self.showError = true
+             }
          }
      }
+
+
     
     private func deleteItem(at offsets: IndexSet) {
         shoppingItems.remove(atOffsets: offsets)
@@ -100,6 +108,7 @@ struct ShoppingListUI: View {
 }
 
 struct ActionButtonStyle: ButtonStyle {
+    var backgroundColor: Color = .green
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
